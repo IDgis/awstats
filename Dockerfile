@@ -13,9 +13,10 @@ ENV AWSTATS_CONF_SITEDOMAIN="www.idgis.nl"
 
 WORKDIR /
 
-RUN /bin/bash -c 'a2enmod cgi'
-RUN /bin/bash -c 'a2ensite apache2.awstats.conf'
-RUN /bin/bash -c 'service apache2 restart'
-#RUN /bin/bash -c 'service apache2 reload'
-CMD /run.sh
+RUN service apache2 start
+RUN a2enmod cgi
+RUN a2ensite apache2.awstats.conf
+RUN service apache2 restart
+# RUN service apache2 reload
 
+CMD /run.sh
