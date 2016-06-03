@@ -12,6 +12,7 @@ _Webpagina_: http://HOST/awstats/awstats.pl?config=stats
 ------
 
 De volgende omgevingsvariabelen worden gebruikt in de awstats configuratie (awstats.stats.conf):
+ (Default wordt other_vhost_access.log gebruikt)
 
  AWSTATS_CONF_LOGFILE="/var/log/apache2/other_vhosts_access.log"
  
