@@ -32,3 +32,11 @@ Op de volgende locaties :
 Andere configuratie settings zijn default ingesteld zoals het niet meetellen van requests vanuit IDgis:
 
 SkipHosts="127.0.0.1 83.247.8.136 78.46.96.163 localhost REGEX[^192\.168\.] REGEX[^10\.]"
+
+#known bugs
+
+De awstats webpagina doet het nog niet:
+
+Not Found
+
+The requested URL /awstats/awstats.pl was not found on this server.
