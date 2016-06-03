@@ -1,11 +1,10 @@
-FROM ubuntu:latest
+FROM ubuntu:14.04
+
 RUN apt-get -y update  && apt-get install -y awstats && apt-get install -y apache2
-ADD ./awstats.template.conf /etc/awstats/awstats.template.conf
+
+ADD ./awstats.stats.conf /etc/awstats/awstats.stats.conf
 ADD ./apache2.awstats.conf /etc/apache2/sites-available/
-RUN 
-# ADD ./add-awstats-conf.sh /
-ADD ./awstats.linoxide.conf /usr/lib/cgi-bin/awstats/awstats.linoxide.conf
-ADD ./awstats.stats.conf /usr/lib/cgi-bin/awstats/awstats.stats.conf
+
 ADD ./run.sh /
 
 ENV AWSTATS_CONF_LOGFILE="/var/log/apache2/other_vhosts_access.log"
@@ -14,5 +13,9 @@ ENV AWSTATS_CONF_SITEDOMAIN="www.idgis.nl"
 
 WORKDIR /
 
+RUN /bin/bash -c 'a2enmod cgi'
+RUN /bin/bash -c 'a2ensite apache2.awstats.conf'
+RUN /bin/bash -c 'service apache2 restart'
+#RUN /bin/bash -c 'service apache2 reload'
 CMD /run.sh
 
