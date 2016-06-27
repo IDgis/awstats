@@ -36,8 +36,9 @@ SkipHosts="127.0.0.1 83.247.8.136 78.46.96.163 localhost REGEX[^192\.168\.] REGE
 
 #known bugs
 
-De awstats webpagina doet het nog niet:
+AWstats (versie 7.2 in Ubuntu 14.04) kan omgevingsvariabelen slechts deels verwerken.   
+Bij het inlezen en updaten van een log file worden de omgevingsvariabelen gesubstitueerd, bij het opvragen van de statistieken in een browser niet. Er wordt dan een foutmelding gegeven.
 
-Not Found
+Dit probleem is ondervangen door in run.sh met behulp van sed de omgevingsvariabelen in awstats.stats.conf te vervangen door de juiste waarden.  
 
-The requested URL /awstats/awstats.pl was not found on this server.
+    
