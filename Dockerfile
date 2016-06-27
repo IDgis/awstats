@@ -1,6 +1,8 @@
 FROM ubuntu:14.04
 
-RUN apt-get -y update  && apt-get install -y awstats && apt-get install -y apache2
+RUN apt-get -y update && \
+	apt-get install -y awstats && \
+	apt-get install -y apache2
 
 ADD ./awstats.stats.conf /etc/awstats/awstats.stats.conf
 ADD ./apache2.awstats.conf /etc/apache2/sites-available/
@@ -13,10 +15,9 @@ ENV AWSTATS_CONF_SITEDOMAIN="www.idgis.nl"
 
 WORKDIR /
 
-RUN service apache2 start
-RUN a2enmod cgi
-RUN a2ensite apache2.awstats.conf
-RUN service apache2 restart
-# RUN service apache2 reload
+RUN a2enmod cgi && \
+	a2ensite apache2.awstats.conf
+
+EXPOSE 80
 
 CMD /run.sh
