@@ -3,22 +3,22 @@ Docker image for awstats
 
 Dit image bevat een apache en awstats installatie. 
 
-_Bouwen_: docker build -t awstats2 .
+_Bouwen_: ``docker build -t awstats2 .``
 
-_Runnen_: docker run -it  -v ~/Documents/docker/awstats/other_vhosts_access.log:/var/log/apache2/other_vhosts_access.log awstats2
+_Runnen_: ``docker run -it -p 8082:80  -v ~/Documents/docker/awstats/other\_vhosts\_access.log:/var/log/apache2/other\_vhosts\_access.log awstats2``
 
-_Webpagina_: http://HOST/awstats/awstats.pl?config=stats
+_Webpagina_: ``http://localhost:8082/cgi-bin/awstats.pl?``
 
 ------
 
 De volgende omgevingsvariabelen worden gebruikt in de awstats configuratie (awstats.stats.conf):
- (Default wordt other_vhost_access.log gebruikt)
+ (Default wordt other\_vhost\_access.log gebruikt)
 
- AWSTATS_CONF_LOGFILE="/var/log/apache2/other_vhosts_access.log"
+ AWSTATS_CONF_LOGFILE="/var/log/apache2/other\_vhosts\_access.log"
  
  AWSTATS_CONF_LOGFORMAT="%referer %host %logname %other %time1 %methodurl %code %bytesd %refererquot %uaquot"
  
- AWSTATS_CONF_SITEDOMAIN="www.idgis.nl"
+ AWSTATS_CONF_SITEDOMAIN="awstats"
  
 Op de volgende locaties :
 
@@ -34,12 +34,3 @@ Andere configuratie settings zijn default ingesteld zoals het niet meetellen van
 
 SkipHosts="127.0.0.1 83.247.8.136 78.46.96.163 localhost REGEX[^192\.168\.] REGEX[^10\.]"
 
-#known bugs
-
-AWstats (versie 7.2 in Ubuntu 14.04) kan placeholders in de configuratie vervangen door waarden van omgevingsvariabelen.
-Bij het inlezen en updaten van een log file worden de placeholders wel gesubstitueerd, bij het opvragen van de statistieken in een browser niet. Er wordt dan een foutmelding gegeven.
-
-Dit probleem is ondervangen door in run.sh met behulp van ``sed``  de placeholders in awstats.stats.conf te vervangen door de waarden van de omgevingsvariabelen.  
-Echter tijdens ``docker build`` geeft sed een foutmelding en wordt de configuratie awstats.stats.conf *niet* aangepast.
-
-    

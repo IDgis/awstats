@@ -11,7 +11,7 @@ COPY run.sh /
 
 ENV AWSTATS_CONF_LOGFILE="/var/log/apache2/other_vhosts_access.log"
 ENV AWSTATS_CONF_LOGFORMAT="%referer %host %logname %other %time1 %methodurl %code %bytesd %refererquot %uaquot"
-ENV AWSTATS_CONF_SITEDOMAIN="www.idgis.nl"
+ENV AWSTATS_CONF_SITEDOMAIN="awstats"
 
 WORKDIR /
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-envsubst < /etc/awstats/awstats.stats.conf.template > /etc/awstats/awstats.stats.conf
+envsubst < /etc/awstats/awstats.stats.conf.template > /etc/awstats/awstats.conf
 
 service apache2 start
 
